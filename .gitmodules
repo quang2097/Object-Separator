@@ -1,0 +1,3 @@
+[submodule "lib/opencv_cpp"]
+	path = lib/opencv_cpp
+	url = https://github.com/opencv/opencv.git
