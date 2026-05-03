@@ -1,3 +1,0 @@
-D:/whateveraboutit/ObjectSeparator/build/CMakeFiles/ObjectSeparator_program.dir
-D:/whateveraboutit/ObjectSeparator/build/CMakeFiles/edit_cache.dir
-D:/whateveraboutit/ObjectSeparator/build/CMakeFiles/rebuild_cache.dir

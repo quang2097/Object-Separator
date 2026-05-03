@@ -18,6 +18,12 @@ int processing(std::string& dataLocation, std::string& resultLocation, int choic
     int count = 0,
         countFailed = 0;
 
+    if(!fs::exists(dataLocation)){
+        cout << "Failed to find directory \'" + dataLocation + "\'." << endl
+             << "Check locations.txt file." << endl;
+        return 1;
+    }
+
     for(const auto& entry : fs::directory_iterator(dataLocation)){
         Mat currentImage;
         string imagePath;
