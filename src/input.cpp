@@ -1,19 +1,20 @@
 #include "../include/libs/core.hpp"
 #include "../include/src/utils/announceError.hpp"
+#include <string>
 
 using namespace std;
 using namespace cv;
 
-int input(std::string& entry, cv::Mat& image){
-    Mat currentImage = imread(entry, IMREAD_COLOR);
+//input file via paths.
+int input(const std::string& entry, cv::Mat& image){
+    string filename = "src/input.cpp";
+    image = imread(entry, IMREAD_COLOR);
 
-    if(currentImage.empty()){
+    if(image.empty()){
         cout << "Failed to input file \'" << entry << "\'." << endl;
-        announceError(16);
-        return 0;
+        announceError(15, filename);
+        return 1;
     }
 
-    image = currentImage.clone();
-
-    return 1;
+    return 0;
 }

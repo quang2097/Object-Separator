@@ -10,6 +10,7 @@ add_executable(ObjectSeparator_program
     src/output.cpp
     src/processing.cpp
     src/utils/announceError.cpp
+    src/utils/readTxtFile.cpp
 )
 
 target_include_directories(ObjectSeparator_program PRIVATE

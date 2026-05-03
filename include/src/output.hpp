@@ -2,6 +2,6 @@
 
 #ifndef OUTUT_HPP
 #define OUTPUT_HPP
-int output(std::string resultLocation, cv::Mat& result);
+int output(const std::string& resultLocation, cv::Mat& result);
 
 #endif

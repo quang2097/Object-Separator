@@ -1,5 +1,4 @@
-#include "src/input.hpp"
-#include "src/output.hpp"
+#include <string>
 
 #ifndef PROCESSING_HPP
 #define PROCESSING_HPP

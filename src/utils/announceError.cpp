@@ -1,5 +1,6 @@
 #include <iostream>
 
-void announceError(int lineNumber){
-    std::cout << "Error at \'" << __FILE__ << "\' line " << lineNumber << "." << std::endl;
+//print error message with the line the error ocurred. Very tedious -_-
+void announceError(const int lineNumber, const std::string& filename){
+    std::cout << "Error at \'" << filename << "\' line " << lineNumber << "." << std::endl;
 }

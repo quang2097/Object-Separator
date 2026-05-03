@@ -2,17 +2,16 @@
 #include "../include/src/output.hpp"
 #include "../include/src/utils/announceError.hpp"
 #include <filesystem>
+#include <string>
 
 namespace fs = std::filesystem;
 using namespace std;
 using namespace cv;
 
-void processImage(Mat& image){
-    if(image.empty())
-        return;
-}
+void processImage(Mat& image);
 
 int processing(std::string& dataLocation, std::string& resultLocation, int choice){
+    string filename = "src/processing.cpp";
     if(choice == 1)
         resultLocation = dataLocation;
 
@@ -27,12 +26,12 @@ int processing(std::string& dataLocation, std::string& resultLocation, int choic
             imagePath = entry.path().string();
         } else{
             cout << "Failed to input file \'" << imagePath << "\' " << "because of invalid file type. Continuing." << endl;
-            announceError(30);
+            announceError(28, filename);
         }
 
         int check = input(imagePath, currentImage);
 
-        if(check == 0){
+        if(check == 1){
             countFailed++;
             continue;
         }
@@ -40,7 +39,7 @@ int processing(std::string& dataLocation, std::string& resultLocation, int choic
         processImage(currentImage);
         if(currentImage.empty()){
             cout << "Failed to process file \'" << imagePath << "\' " << "continuing." << endl;
-            announceError(43);
+            announceError(41, filename);
             countFailed++;
             continue;
         }
@@ -52,5 +51,9 @@ int processing(std::string& dataLocation, std::string& resultLocation, int choic
     cout << "Successfully proccessed " << count << " files." << endl;
     cout << "Failed to proccess " << countFailed << " files." << endl;
 
-    return count == 0 ? 0 : 1;
+    return count == 0 ? 1 : 0;
+}
+
+//process the .jpg/.jpeg files.
+void processImage(Mat& image){
 }
