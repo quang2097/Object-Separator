@@ -33,3 +33,10 @@
 4505	5006	7995102833306732	ObjectSeparator_program.exe	4535dde7599ca5a4
 64	3969	7995105561448996	CMakeFiles/ObjectSeparator_program.dir/src/main.cpp.obj	20bbbd5bdd17fbec
 3969	4327	7995105600502998	ObjectSeparator_program.exe	4535dde7599ca5a4
+454	1854	7996669485678776	CMakeFiles/ObjectSeparator_program.dir/src/utils/announceError.cpp.obj	2928b21e0d673ad5
+411	5757	7996669485238505	CMakeFiles/ObjectSeparator_program.dir/src/input.cpp.obj	65ad6b99422a9409
+424	5793	7996669485369930	CMakeFiles/ObjectSeparator_program.dir/src/output.cpp.obj	46bca16490d8c462
+440	6526	7996669485515731	CMakeFiles/ObjectSeparator_program.dir/src/processing.cpp.obj	6ca0c5a058085595
+54	3789	7996671344249924	CMakeFiles/ObjectSeparator_program.dir/src/main.cpp.obj	20bbbd5bdd17fbec
+90	5143	7996673711724694	CMakeFiles/ObjectSeparator_program.dir/src/utils/readTxtFile.cpp.obj	18680ca884c855ae
+5144	6315	7996673762307713	ObjectSeparator_program.exe	4535dde7599ca5a4

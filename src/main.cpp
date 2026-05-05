@@ -23,7 +23,7 @@ int main(){
     vector<string> locations;
     string dataLocation, resultLocation;
 
-    locations = readTxtFile(locationPath);
+    locations = readTxtFile(locationPath, 1);
     if(locations.size() < 2){
         cout << "locations.txt is invalid." << endl
              << "Please format the locations.txt file with the following example (ignore anything before the \':\'):"
