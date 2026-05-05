@@ -4,4 +4,4 @@
 
 *.dll
 
-/libs/opencv_cpp/
+/build/*
