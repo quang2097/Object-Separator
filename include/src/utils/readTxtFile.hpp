@@ -3,6 +3,7 @@
 
 #ifndef READTXTFILE_HPP
 #define READTXTFILE_HPP
+std::vector<std::string> readTxtFile(const std::string& filename, const int type);
 std::vector<std::string> readTxtFile(const std::string& filename);
 
 #endif
