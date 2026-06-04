@@ -11,11 +11,13 @@ namespace fs = std::filesystem;
 using namespace std;
 using namespace cv;
 
-void processImage(Mat& image);
+void processImage(Mat& image, const string& fileName);
+string* resultLocationLocal;
 
 int processing(std::string& dataLocation, std::string& resultLocation, int choice){
     vector<fs::path> imagePaths;
     string filename = "src/processing.cpp";
+    resultLocationLocal = &resultLocation;
 
     if(choice == 1)
         resultLocation = dataLocation;
@@ -48,13 +50,11 @@ int processing(std::string& dataLocation, std::string& resultLocation, int choic
             return;
         }
 
-        processImage(currentImage);
+        processImage(currentImage, imagePath.filename().string());
         if(currentImage.empty()){
             cout << "Failed to process file \'" << imagePath << "\' " << "continuing." << endl;
             return;
         }
-
-        output("/outputDir/" + imagePath.filename().string(), currentImage);
     });
 
     // for(const auto& entry : fs::directory_iterator(dataLocation)){
@@ -93,5 +93,6 @@ int processing(std::string& dataLocation, std::string& resultLocation, int choic
 }
 
 //process the .jpg/.jpeg files.
-void processImage(Mat& image){
+void processImage(Mat& image, const string& fileName){
+    output((*resultLocationLocal) + "/" + fileName, image);
 }
