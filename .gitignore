@@ -1,7 +1,10 @@
 .vscode
 
 *.exe
-
 *.dll
+*.obj
 
-/build/*
+*build/*
+*build_linux/*
+
+*.txt

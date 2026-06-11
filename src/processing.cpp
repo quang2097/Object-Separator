@@ -89,7 +89,7 @@ int processing(std::string& dataLocation, std::string& resultLocation, int choic
 
     cout << "Successfully proccessed " << imagePaths.size() << " files." << endl;
 
-    return count == 0 ? 1 : 0;
+    return imagePaths.size() == 0 ? 1 : 0;
 }
 
 //process the .jpg/.jpeg files.

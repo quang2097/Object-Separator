@@ -17,6 +17,6 @@ target_include_directories(ObjectSeparator_program PRIVATE
     include
 )
 
-find_package(OpenCV REQUIRED PATHS libs/opencv_cpp/build)
+find_package(OpenCV REQUIRED PATHS libs/opencv_cpp/build_linux)
 
 target_link_libraries(ObjectSeparator_program PRIVATE ${OpenCV_LIBS})
