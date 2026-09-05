@@ -11,10 +11,16 @@ namespace fs = std::filesystem;
 using namespace std;
 using namespace cv;
 
-void processImage(Mat& image, const string& fileName);
+void processImage(Mat& image, const string& fileName, const string& fileExt);
+Mat unifySimilarColors(const Mat& input, double spatialRad, double colorRad);
 string* resultLocationLocal;
+double spacialRadLocal;
+double colorRadLocal;
 
-int processing(std::string& dataLocation, std::string& resultLocation, int choice){
+int processing(std::string& dataLocation, std::string& resultLocation, const double& spacialRad, const double& colorRad, int choice){
+    spacialRadLocal = spacialRad;
+    colorRadLocal = colorRad;
+
     vector<fs::path> imagePaths;
     string filename = "src/processing.cpp";
     resultLocationLocal = &resultLocation;
@@ -32,7 +38,7 @@ int processing(std::string& dataLocation, std::string& resultLocation, int choic
     }
 
     for(const auto& entry : fs::directory_iterator(dataLocation)){
-        if (entry.is_regular_file() && entry.path().extension() == ".jpg") {
+        if (entry.is_regular_file() && (entry.path().extension() == ".jpg" || entry.path().extension() == ".jpeg")) {
             imagePaths.push_back(entry);
         } else{
             cout << "Failed to input file \'" << entry.path().string() << "\' " << "because of invalid file type. Continuing." << endl;
@@ -50,7 +56,10 @@ int processing(std::string& dataLocation, std::string& resultLocation, int choic
             return;
         }
 
-        processImage(currentImage, imagePath.filename().string());
+        string fileName = imagePath.stem().string();
+        string fileExt  = imagePath.extension().string();
+
+        processImage(currentImage, fileName, fileExt);
         if(currentImage.empty()){
             cout << "Failed to process file \'" << imagePath << "\' " << "continuing." << endl;
             return;
@@ -75,7 +84,10 @@ int processing(std::string& dataLocation, std::string& resultLocation, int choic
     //         continue;
     //     }
 
-    //     processImage(currentImage);
+    //     string fileName = entry.stem().string();       // Gets the filename without extension
+    //     string fileExt  = entry.extension().string();
+
+    //     processImage(currentImage, fileName, fileExt);
     //     if(currentImage.empty()){
     //         cout << "Failed to process file \'" << imagePath << "\' " << "continuing." << endl;
     //         announceError(41, filename);
@@ -93,6 +105,18 @@ int processing(std::string& dataLocation, std::string& resultLocation, int choic
 }
 
 //process the .jpg/.jpeg files.
-void processImage(Mat& image, const string& fileName){
-    output((*resultLocationLocal) + "/" + fileName, image);
+void processImage(Mat& image, const string& fileName, const string& fileExt){
+    image = unifySimilarColors(image, spacialRadLocal, colorRadLocal);
+    output((*resultLocationLocal) + "/" + fileName + fileExt, image);
+}
+
+Mat unifySimilarColors(const Mat& input, double spatialRad, double colorRad) {
+    Mat output;
+    
+    // cv::pyrMeanShiftFiltering groups neighbor pixels with similar color values 
+    // within the spatial (spatialRad) and color (colorRad) thresholds and sets 
+    // them to their average color.
+    cv::pyrMeanShiftFiltering(input, output, spatialRad, colorRad);
+    
+    return output;
 }

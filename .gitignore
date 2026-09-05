@@ -1,10 +1,10 @@
 .vscode
-
 *.exe
 *.dll
 *.obj
 
-*build/*
-*build_linux/*
+build/
+build_linux/
 
 *.txt
+test

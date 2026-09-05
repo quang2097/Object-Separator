@@ -11,11 +11,11 @@ int output(const std::string& resultLocation, cv::Mat& result){
     string filename = "src/output.cpp";
     int check = save(resultLocation, result);
     if(check == 1){
-        cout << "Failed to save file at \'" << resultLocation << "\'.";
+        cout << "Failed to save file at \'" << resultLocation << "\'." << endl;
         announceError(14, filename);
     }
 
-    cout << "Save file at \'" << resultLocation << "\' " << "successful.";
+    cout << "Save file at \'" << resultLocation << "\' " << "successful." << endl;
     return 0;
 }
 

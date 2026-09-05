@@ -2,6 +2,7 @@
 #include "../include/src/utils/readTxtFile.hpp"
 #include <iostream>
 #include <filesystem>
+#include <string.h>
 
 #if defined(_WIN32)
     #include <windows.h>
@@ -20,8 +21,11 @@ string getExecutableDirectory();
 //this is main, duh :)
 int main(){
     const string locationPath = getExecutableDirectory() + "/../locations.txt";
+    const string variablePath = getExecutableDirectory() + "/../variable.txt";
     vector<string> locations;
     string dataLocation, resultLocation;
+    vector<string> spacial_and_color;
+    double spacialRad = 20, colorRad = 30;
 
     locations = readTxtFile(locationPath, 1);
     if(locations.size() < 2){
@@ -36,7 +40,25 @@ int main(){
     dataLocation = locations[0];
     resultLocation = locations[1];
 
-    int check = processing(dataLocation, resultLocation, 2);
+    spacial_and_color = readTxtFile(variablePath, 1);
+
+    if(spacial_and_color.size() >= 2){
+        spacialRad = stod(spacial_and_color[0]);
+        colorRad = stod(spacial_and_color[1]);
+    }
+
+    if(spacialRad < 0)
+        spacialRad = 0;
+    else if(spacialRad > 1000)
+        spacialRad = 1000;
+    if(colorRad < 0)
+        colorRad = 0;
+    else if(colorRad > 441.67)
+        colorRad = 441.67;
+
+    cout << spacialRad << endl << colorRad << endl;
+
+    int check = processing(dataLocation, resultLocation, spacialRad, colorRad, 2);
     if(check == 1){
         cout << "Processing failed.";
         return 1;
